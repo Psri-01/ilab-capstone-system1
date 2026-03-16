@@ -5,7 +5,7 @@ System 1 acts as the 'eyes and mouth', aka input and output of the Decidr Cohere
 Phase 1: The Input Pipeline (Completed)
 Objective: Establish a strict, schema-validated boundary between the raw CSV data and System 2, following the Brenndoerfer "Schema-First" architecture.
 
-What We Did:
+## What We Did:
 Defined the Interface Contract: We mapped the exact column headers from goals.csv and analytical_flat.csv into two strict Pydantic models (GoalConfig and PeriodRecord).
 Built the Gatekeeper: We wrote loader.py to ingest the CSVs via Pandas and pass every single row through the Pydantic models.
 Resolved Data Drift: The initial run caught several schema mismatches (e.g., column name discrepancies like target_value_final_period vs target_value_period_24, and type coercion issues with bucket_id). These were corrected in the models.
@@ -53,16 +53,16 @@ Python
 from loader import load_and_validate
 from explainer import explain_record
 
-# 1. Ensure data is fresh and valid
+#### 1. Ensure data is fresh and valid
 records, goals, errors = load_and_validate()
 
-# 2. Pick the worst performing record (just for the POC)
-# (Add your logic here to sort/filter records)
+#### 2. Pick the worst performing record (just for the POC)
+(Add your logic here to sort/filter records)
 target_record = records[0] # Placeholder
 
-# 3. Get the matching config
+#### 3. Get the matching config
 target_config = goals[str(target_record['goal_id'])]
 
-# 4. Generate the narrative
+#### 4. Generate the narrative
 explanation = explain_record(target_record, target_config)
 print(explanation)
