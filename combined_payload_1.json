@@ -1,0 +1,40 @@
+{
+  "user_query": "How is Goal 1 doing in Period 3?",
+  "extracted_params": {
+    "goal_id": 1,
+    "period_id": 3
+  },
+  "goal_config": {
+    "goal_id": 1,
+    "metric_name": "Performance Metric - Google Ads - Search",
+    "bucket_id": 19,
+    "target_value_final_period": 85.0,
+    "red_low_max": 0.0490419693369384,
+    "orange_low_max": 0.0511976602968039,
+    "green_min": 0.0511976602968039,
+    "green_max": 0.0565868876964674,
+    "orange_high_min": 0.0565868876964674,
+    "red_high_min": 0.0587425786563328
+  },
+  "period_records": [
+    {
+      "period_id": 3,
+      "bucket_id": 19,
+      "goal_id": 1,
+      "metric_name": "Performance Metric - Google Ads - Search",
+      "scenario_story": "underfunded",
+      "allocated_amount": 29679.8411355662,
+      "delivered_output_quantity": 261.43961638133334,
+      "delivered_output_quality_score": 0.7085343880966031,
+      "observed_value": 18.467838162015788,
+      "expected_value": 63.125,
+      "range_position_score": 0.05,
+      "probability_of_hitting_target": 0.1,
+      "status_band": "red_low",
+      "underfunded_flag": true,
+      "overfunded_flag": false,
+      "allocation_efficiency_ratio": 1.0,
+      "time_to_green_estimate": 5
+    }
+  ]
+}

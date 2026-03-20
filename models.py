@@ -1,13 +1,16 @@
 from pydantic import BaseModel, Field
 from typing import Literal, Union
 
+class UserIntent(BaseModel):
+    query_type: Literal["metric_name_analysis", "compare_periods", "trend_analysis"]
+
 class GoalConfig(BaseModel):
     """
     Option B — goals style (per goal, static config)
     Mapped exactly to goals.csv headers.
     """
     goal_id: int
-    metric_name: str
+    # metric_name: str
     bucket_id: Union[int, str]  # Accepts 19 or "L3-07"
     
     target_value_final_period: float
@@ -20,7 +23,6 @@ class GoalConfig(BaseModel):
     orange_high_min: float
     red_high_min: float
 
-
 class PeriodRecord(BaseModel):
     """
     Option A — analytical_flat style (per row / per period)
@@ -29,7 +31,7 @@ class PeriodRecord(BaseModel):
     period_id: int = Field(ge=1, le=24)
     bucket_id: Union[int, str]
     goal_id: int
-    metric_name: str
+    # metric_name: str
     scenario_story: str
     
     # Financial/Quantity metrics matching CSV

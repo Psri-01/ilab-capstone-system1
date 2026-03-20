@@ -1,0 +1,40 @@
+{
+  "user_query": "What is the probability of Goal 17 hitting its target by Period 24?",
+  "extracted_params": {
+    "goal_id": 17,
+    "period_id": 24
+  },
+  "goal_config": {
+    "goal_id": 17,
+    "metric_name": "Performance Metric - A/B Testing",
+    "bucket_id": 35,
+    "target_value_final_period": 85.0,
+    "red_low_max": 0.0269815811683305,
+    "orange_low_max": 0.0281675847361692,
+    "green_min": 0.0281675847361692,
+    "green_max": 0.031132593655766,
+    "orange_high_min": 0.031132593655766,
+    "red_high_min": 0.0323185972236047
+  },
+  "period_records": [
+    {
+      "period_id": 24,
+      "bucket_id": 35,
+      "goal_id": 17,
+      "metric_name": "Performance Metric - A/B Testing",
+      "scenario_story": "optimal",
+      "allocated_amount": 27616.96880973789,
+      "delivered_output_quantity": 1112.6728121495337,
+      "delivered_output_quality_score": 0.7773103083317984,
+      "observed_value": 24.76519172100574,
+      "expected_value": 85.0,
+      "range_position_score": 0.2339345973817833,
+      "probability_of_hitting_target": 0.0,
+      "status_band": "orange_low",
+      "underfunded_flag": false,
+      "overfunded_flag": false,
+      "allocation_efficiency_ratio": 0.2044835704372567,
+      "time_to_green_estimate": 1
+    }
+  ]
+}

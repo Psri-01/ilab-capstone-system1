@@ -1,68 +1,131 @@
 # ilab-capstone-system1
-System 1 acts as the 'eyes and mouth', aka input and output of the Decidr Coherence Engine (of 3 systems as a whole). This is a part of the UTS iLab Capstone project for MDSI.
 
-## Decidr Coherence Engine: System 1 POC Status
-Phase 1: The Input Pipeline (Completed)
-Objective: Establish a strict, schema-validated boundary between the raw CSV data and System 2, following the Brenndoerfer "Schema-First" architecture.
+System 1 acts as the **'ears and mouth'** of the Decidr Coherence Engine — responsible for input parsing (converting natural language queries into structured JSON) and output translation (converting System 2's scores back into natural language explanations). This is part of the UTS iLab Capstone project for MDSI.
 
-## What We Did:
-Defined the Interface Contract: We mapped the exact column headers from goals.csv and analytical_flat.csv into two strict Pydantic models (GoalConfig and PeriodRecord).
-Built the Gatekeeper: We wrote loader.py to ingest the CSVs via Pandas and pass every single row through the Pydantic models.
-Resolved Data Drift: The initial run caught several schema mismatches (e.g., column name discrepancies like target_value_final_period vs target_value_period_24, and type coercion issues with bucket_id). These were corrected in the models.
+## Architecture Overview
+```
+User (English query)
+        ↓
+   System 1 (Input)
+   ├── query_extractor.py  →  extracts params from NL query
+   ├── output.json         →  received from System 3 (time-series records)
+   └── goals_config.json   →  received from System 3 (static goal configs)
+        ↓
+   combined_payload_*.json (NL params + matched records)
+        ↓
+   combine.py
+   ├── output_updated.json       →  sent back to System 3
+   └── goals_config_updated.json →  sent back to System 3
+        ↓
+   System 3 → System 2 (scoring/predictions)
+        ↓
+   System 3 returns scored JSONs to System 1
+        ↓
+   System 1 (Output) ← explainer.py [Phase 2 - pending]
+        ↓
+   User (English explanation + dashboard)
+```
 
-Final Output: The pipeline successfully ran with 0 errors. It generated two mathematically clean, strictly-typed JSON files ready for the LLM and System 2:
+## Phase 1: Input Pipeline Completed
 
-output.json (Option A - Time-series period records)
-goals_config.json (Option B - Static goal configurations/thresholds)
+**Objective:** Parse natural language user queries, combine extracted parameters with System 3's JSON files, and return annotated combined JSONs ready for System 2.
 
-Current Architecture State:
-models.py: Contains the finalized Pydantic schemas.
-loader.py: The ETL script that validates and outputs the JSONs.
+### What Was Built
 
-Handoff Note: Next Steps for Phase 2 (LLM Integration)
-We now have a bulletproof Pydantic validation layer. The raw CSVs are successfully converting into clean, strictly-typed JSONs (output.json and goals_config.json). The data is ready for further analysis.
+**`models.py`** — Pydantic schema definitions
+- `GoalConfig`: static goal thresholds (green/orange/red bands, target value)
+- `PeriodRecord`: time-series allocation and performance data per goal per period
+- Resolved data drift during initial run (column name mismatches, type coercion on `bucket_id`)
 
-The goal for this phase is to prove the LLM connection works by generating one single explanation for a hardcoded goal (pick a poorly performing/underfunded one to make it interesting).
+**`loader.py`** — ETL validation pipeline
+- Ingests `goals.csv` and `analytical_flat.csv` via Pandas
+- Validates every row through Pydantic models
+- Ran with **0 errors**, producing two clean JSON files:
+  - `output.json` — 840 validated period records (Option A)
+  - `goals_config.json` — 35 static goal configurations (Option B)
 
-Here is a game plan for the explainer.py script:
+**`query_extractor.py`** — Natural language → structured JSON
+- Extracts `goal_id`, `period_id`, `underfunded_flag`, `overfunded_flag` from plain English queries
+- Looks up matching records from `output.json` and `goals_config.json`
+- Outputs `combined_payload_{n}.json` per query — envelope containing:
+  - `user_query`: original English string
+  - `extracted_params`: parsed fields
+  - `goal_config`: matched static config from System 3
+  - `period_records`: matched time-series records from System 3
 
-1. Environment Setup
-We are using Ollama locally for this POC to keep things fast and free.
-Install Ollama on your machine.
-Run ollama run qwen2.5:7b-instruct in your terminal to pull the model.
+**`combine.py`** — Merge payloads back into annotated JSON files
+- Annotates records and goal configs with `queried_by` field (which user query triggered them)
+- Outputs:
+  - `output_updated.json` — full 840-record dataset with query provenance
+  - `goals_config_updated.json` — full 35-goal config with query provenance
+- These are the files sent back to System 3
 
-2. Build explainer.py
-Write a script that does the following:
-Loads the two JSON files generated (output.json and goals_config.json).
-Finds a specific record (e.g., the record with the worst range_position_score).
-Finds that record's matching static config using the goal_id.
-Injects both JSON objects into a prompt string.
-Uses the requests library or the official Python Ollama client to ping the local Qwen2.5 API.
+### Sample Queries Tested
+```
+"How is Goal 1 doing in Period 3?"
+"Which goals are underfunded right now?"
+"What is the probability of Goal 17 hitting its target by Period 24?"
+```
 
-3. The Prompt Template (Crucial)
-When you build the prompt template, remember the two big takeaways from our literature review on Explainable AI (XAI):
-Context is everything: You must feed the LLM both the period record (what happened) AND the goal config (what the thresholds are). Without the config, the LLM won't know if a score of "0.21" is a disaster or just slightly below average.
+## Phase 1b: LLM Output POC Completed (partial)
 
-The Confidence Hedge: Research shows LLMs overstate confidence when explaining metrics. You need to explicitly instruct Qwen2.5 to look at the data (and any uncertainty metrics) and hedge its language. Add an instruction like: "If the score is low, use phrasing that reflects uncertainty (e.g., 'The data suggests...' or 'Potential factors include...') rather than stating it as absolute fact."
+**`explainer.py`** — Ollama + qwen2.5:3b explanation generation
+- Takes a period record + goal config → generates plain English explanation
+- Prompt includes XAI confidence hedging ("The data suggests..." framing)
+- Tested on worst-performing, specific, and overfunded goals
 
-4. Tie it together in run.py
-Once your explainer function works, create a quick run.py to act as the entry point:
+**`run.py`** — End-to-end test runner
+- Test 1: Worst performing goal by `range_position_score`
+- Test 2: Specific goal/period query (Goal 17, Period 18)
+- Test 3: Overfunded goal
 
-Python
-# run.py skeleton
-from loader import load_and_validate
-from explainer import explain_record
+> **Note:** `explainer.py` is the output-half prototype. Full output translation (System 2 scores → NL explanations → dashboard) is Phase 2, pending System 2's scored JSON output from System 3.
 
-#### 1. Ensure data is fresh and valid
-records, goals, errors = load_and_validate()
+## Phase 2: Output Translation 🔜 Pending
 
-#### 2. Pick the worst performing record (just for the POC)
-(Add your logic here to sort/filter records)
-target_record = records[0] # Placeholder
+Waiting on System 3 to return scored JSONs from System 2. Once received, System 1 will:
+- Translate coherence scores (R, I, A + overall CS) into audience-specific NL explanations
+- Generate executive summary and analyst drill-down views
+- Produce interactive dashboard with downloadable reports (joint deliverable with System 3)
 
-#### 3. Get the matching config
-target_config = goals[str(target_record['goal_id'])]
+## How to Run
 
-#### 4. Generate the narrative
-explanation = explain_record(target_record, target_config)
-print(explanation)
+```bash
+# Step 1: Generate clean JSON files from CSVs (run once)
+python loader.py
+
+# Step 2: Extract query params + build combined payloads
+python query_extractor.py
+
+# Step 3: Merge payloads into annotated output files for System 3
+python combine.py
+
+# Step 4: Test LLM explanation output (requires Ollama running locally)
+ollama serve
+python run.py
+```
+
+## File Reference
+
+| File | Purpose | Status |
+|---|---|---|
+| `models.py` | Pydantic schema definitions | Final |
+| `loader.py` | CSV → validated JSON | Final |
+| `query_extractor.py` | NL query → combined payload JSON | Final |
+| `combine.py` | Payloads + originals → annotated output files | Final |
+| `explainer.py` | Score → NL explanation via Ollama | 🔜 Phase 2 |
+| `run.py` | End-to-end test runner | 🔜 Phase 2 |
+| `output.json` | 840 validated period records | Generated |
+| `goals_config.json` | 35 static goal configs | Generated |
+| `output_updated.json` | Annotated records → for System 3 | Generated |
+| `goals_config_updated.json` | Annotated goal configs → for System 3 | Generated |
+
+## Dependencies
+
+```
+pandas
+pydantic
+requests
+```
+
+Ollama (local): https://ollama.com — pull `qwen2.5:7b-instruct` or `qwen2.5:3b`
