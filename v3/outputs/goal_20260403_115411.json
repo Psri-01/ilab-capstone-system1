@@ -1,0 +1,21 @@
+{
+  "timestamp": "2026-04-03T11:54:11.883577",
+  "goal": {
+    "goal_title": "Increase Organic Traffic",
+    "bucket_l1": "Marketing",
+    "bucket_l2": "Content & SEO",
+    "bucket_l3": "Blog Content Production",
+    "metric_name": "Organic Traffic",
+    "metric_unit": "visitors",
+    "target_value": 84.0,
+    "initial_value": 40.0,
+    "periods": 19,
+    "scenario_story": "overfunded"
+  },
+  "raw_nl_input": "I want to improve our organic traffic from 40 to 84 over a period of 19 months with blog reviews",
+  "metadata": {
+    "source": "system_1",
+    "version": "0.2.0",
+    "destination": "system_3"
+  }
+}

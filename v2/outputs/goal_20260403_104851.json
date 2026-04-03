@@ -1,0 +1,21 @@
+{
+  "timestamp": "2026-04-03T10:48:51.628501",
+  "goal": {
+    "goal_title": "Improve the nps score from 30 to 75",
+    "bucket_l1": "Product",
+    "bucket_l2": "New Features",
+    "bucket_l3": "Feature Development",
+    "metric_name": "NPS Score",
+    "metric_unit": "score",
+    "target_value": 75.0,
+    "initial_value": 30.0,
+    "periods": 11,
+    "scenario_story": "optimal"
+  },
+  "raw_nl_input": "I want to improve the NPS Score from 30 to 75 over 11 months by investing in onboarding",
+  "metadata": {
+    "source": "system_1",
+    "version": "0.2.0",
+    "destination": "system_3"
+  }
+}

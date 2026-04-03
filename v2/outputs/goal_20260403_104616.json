@@ -1,0 +1,21 @@
+{
+  "timestamp": "2026-04-03T10:46:16.051688",
+  "goal": {
+    "goal_title": "Improve our nps score from 60 to 85",
+    "bucket_l1": "Operations",
+    "bucket_l2": "Infrastructure & DevOps",
+    "bucket_l3": "Cloud Infrastructure",
+    "metric_name": "NPS Score",
+    "metric_unit": "score",
+    "target_value": 85.0,
+    "initial_value": 60.0,
+    "periods": 24,
+    "scenario_story": "optimal"
+  },
+  "raw_nl_input": "I want to improve our NPS score from 60 to 85 ",
+  "metadata": {
+    "source": "system_1",
+    "version": "0.2.0",
+    "destination": "system_3"
+  }
+}
