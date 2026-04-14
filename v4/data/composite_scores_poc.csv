@@ -1,0 +1,36 @@
+goal_id,metric_name,l3_name,l2_name,l1_name,scenario,attainability,relevance,coherence,integrity,composite,composite_adjusted,at_risk,critical,weakest_dim,weakest_score
+1,Performance Metric - Google Ads - Search,Google Ads - Search,Paid Acquisition,Marketing,underfunded,0.2581,0.4094,0.15,0.5657,0.312,0.312,True,False,coherence,0.15
+2,Performance Metric - Google Ads - Display,Google Ads - Display,Paid Acquisition,Marketing,dynamic,0.2333,0.2795,0.25,0.522,0.3061,0.3061,True,False,attainability,0.2333
+3,ROAS - Social,Social Media Ads,Paid Acquisition,Marketing,optimal,0.2591,0.3543,0.5,0.6608,0.4428,0.4428,False,False,attainability,0.2591
+4,Organic Traffic,Blog Content Production,Content & SEO,Marketing,optimal,0.2346,0.3764,0.8,0.7029,0.5545,0.5545,False,False,attainability,0.2346
+5,SEO Ranking Score,SEO Optimization,Content & SEO,Marketing,underfunded,0.2339,0.4509,0.15,0.5621,0.3136,0.3136,True,False,coherence,0.15
+6,Video Engagement Rate,Video Content,Content & SEO,Marketing,overfunded,0.234,0.3137,0.25,0.5342,0.3156,0.3156,True,False,attainability,0.234
+7,Partner Count,Partner Acquisition,Partnerships,Marketing,dynamic,0.1975,0.4351,0.15,0.5372,0.2963,0.2963,True,False,coherence,0.15
+8,Co-Marketing ROI,Co-Marketing Campaigns,Partnerships,Marketing,optimal,0.3034,0.3672,0.8,0.6046,0.5502,0.5502,False,False,attainability,0.3034
+9,Channel Revenue,Channel Partnerships,Partnerships,Marketing,dynamic,0.2217,0.323,0.25,0.5036,0.3083,0.3083,True,False,attainability,0.2217
+10,Virtual Event Attendance,Virtual Events,Events & Community,Marketing,overfunded,0.189,0.4195,0.25,0.6062,0.3399,0.3399,True,False,attainability,0.189
+11,Event Lead Generation,In-Person Events,Events & Community,Marketing,underfunded,0.1797,0.4008,0.15,0.5334,0.2843,0.2843,True,False,coherence,0.15
+12,Community Engagement Score,Community Management,Events & Community,Marketing,dynamic,0.2375,0.3396,0.15,0.5038,0.2805,0.2805,True,False,coherence,0.15
+13,API Response Time,Backend Services,Core Platform,Product,overfunded,0.5524,0.3252,0.25,0.5789,0.4064,0.4064,False,False,coherence,0.25
+14,Page Load Time,Frontend Development,Core Platform,Product,optimal,0.6657,0.3727,0.5,0.5738,0.5307,0.5307,False,False,relevance,0.3727
+15,Performance Metric - APIs & Integrations,APIs & Integrations,Core Platform,Product,dynamic,0.2558,0.4258,0.15,0.4955,0.3007,0.3007,True,False,coherence,0.15
+16,Feature Adoption Rate,Feature Development,New Features,Product,overfunded,0.2084,0.2985,0.25,0.5137,0.302,0.302,True,False,attainability,0.2084
+17,Performance Metric - A/B Testing,A/B Testing,New Features,Product,optimal,0.2568,0.3779,0.5,0.6815,0.4511,0.4511,False,False,attainability,0.2568
+18,Launch Success Rate,Feature Launch,New Features,Product,optimal,0.2507,0.4006,0.25,0.5929,0.3489,0.3489,True,False,coherence,0.25
+19,Code Quality Score,Code Refactoring,Technical Debt,Product,underfunded,0.2529,0.287,0.15,0.5193,0.277,0.277,True,False,coherence,0.15
+20,System Uptime,Infrastructure Upgrades,Technical Debt,Product,dynamic,0.2853,0.4648,0.15,0.5187,0.3205,0.3205,True,False,coherence,0.15
+21,POC Success Rate,Proof of Concepts,Research & Innovation,Product,optimal,0.2487,0.4567,0.25,0.6477,0.3705,0.3705,False,False,attainability,0.2487
+22,Innovation Pipeline,Innovation Labs,Research & Innovation,Product,overfunded,0.2241,0.3928,0.25,0.6188,0.3458,0.3458,True,False,attainability,0.2241
+23,Time to Value,Onboarding,Customer Success,Operations,overfunded,0.5823,0.3625,0.25,0.5921,0.424,0.424,False,False,coherence,0.25
+24,Ticket Resolution Time,Support Tickets,Customer Success,Operations,underfunded,1.0,0.4098,0.15,0.7395,0.5324,0.5324,False,False,coherence,0.15
+25,NPS Score,Account Management,Customer Success,Operations,overfunded,0.1916,0.4134,0.25,0.5227,0.3226,0.3226,True,False,attainability,0.1916
+26,Infrastructure Reliability,Cloud Infrastructure,Infrastructure & DevOps,Operations,dynamic,0.2906,0.4062,0.15,0.5278,0.312,0.312,True,False,coherence,0.15
+27,Performance Metric - CI/CD Pipeline,CI/CD Pipeline,Infrastructure & DevOps,Operations,underfunded,0.2166,0.2521,0.15,0.5545,0.268,0.268,True,False,coherence,0.15
+28,Data Pipeline Reliability,Data Engineering,Data & Analytics,Operations,dynamic,0.2762,0.4002,0.25,0.5321,0.343,0.343,True,False,coherence,0.25
+29,Performance Metric - Analytics & Reporting,Analytics & Reporting,Data & Analytics,Operations,underfunded,0.2178,0.2626,0.15,0.5755,0.2746,0.2746,True,False,coherence,0.15
+30,Budget Variance,Financial Planning,Finance & Legal,G&A,optimal,0.606,0.4347,0.5,0.6247,0.5384,0.5384,False,False,relevance,0.4347
+31,Performance Metric - Legal & Compliance,Legal & Compliance,Finance & Legal,G&A,dynamic,0.2746,0.4182,0.25,0.6298,0.3657,0.3657,False,False,coherence,0.25
+32,Time to Hire,Talent Acquisition,HR & Recruiting,G&A,overfunded,0.5464,0.4836,0.25,0.52,0.4248,0.4248,False,False,coherence,0.25
+33,Employee Satisfaction,Employee Development,HR & Recruiting,G&A,optimal,0.2779,0.5139,0.25,0.6425,0.3882,0.3882,False,False,coherence,0.25
+34,Operational Efficiency,Office Operations,General Admin,G&A,optimal,0.281,0.436,0.25,0.6368,0.3723,0.3723,False,False,coherence,0.25
+35,Vendor SLA Compliance,Vendor Management,General Admin,G&A,underfunded,0.2551,0.4813,0.15,0.5666,0.3259,0.3259,True,False,coherence,0.15

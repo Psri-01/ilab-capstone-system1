@@ -1,0 +1,36 @@
+goal_id,metric_name,composite_now,composite_p6,composite_p12,improving_p6,degrading_p6
+1,Performance Metric - Google Ads - Search,0.312,0.6678,0.9051,True,False
+2,Performance Metric - Google Ads - Display,0.3061,0.4081,0.476,True,False
+3,ROAS - Social,0.4428,0.448,0.4514,False,False
+4,Organic Traffic,0.5545,1.0,1.0,True,False
+5,SEO Ranking Score,0.3136,0.4208,0.4922,True,False
+6,Video Engagement Rate,0.3156,0.3964,0.4502,True,False
+7,Partner Count,0.2963,0.4098,0.4854,True,False
+8,Co-Marketing ROI,0.5502,0.5589,0.5647,False,False
+9,Channel Revenue,0.3083,1.0,1.0,True,False
+10,Virtual Event Attendance,0.3399,0.5906,0.7577,True,False
+11,Event Lead Generation,0.2843,0.616,0.8371,True,False
+12,Community Engagement Score,0.2805,0.2974,0.3087,True,False
+13,API Response Time,0.4064,0.0,0.0,False,True
+14,Page Load Time,0.5307,0.5247,0.5207,False,False
+15,Performance Metric - APIs & Integrations,0.3007,0.5362,0.6931,True,False
+16,Feature Adoption Rate,0.302,0.3887,0.4465,True,False
+17,Performance Metric - A/B Testing,0.4511,0.4035,0.3718,False,True
+18,Launch Success Rate,0.3489,0.3145,0.2915,False,True
+19,Code Quality Score,0.277,0.4954,0.641,True,False
+20,System Uptime,0.3205,0.4754,0.5787,True,False
+21,POC Success Rate,0.3705,0.4169,0.4478,True,False
+22,Innovation Pipeline,0.3458,0.3822,0.4065,True,False
+23,Time to Value,0.424,0.3584,0.3146,False,True
+24,Ticket Resolution Time,0.5324,0.4788,0.4431,False,True
+25,NPS Score,0.3226,0.4006,0.4526,True,False
+26,Infrastructure Reliability,0.312,0.2966,0.2863,False,True
+27,Performance Metric - CI/CD Pipeline,0.268,0.2219,0.1912,False,True
+28,Data Pipeline Reliability,0.343,0.3558,0.3643,True,False
+29,Performance Metric - Analytics & Reporting,0.2746,0.2084,0.1643,False,True
+30,Budget Variance,0.5384,0.5157,0.5006,False,True
+31,Performance Metric - Legal & Compliance,0.3657,0.6869,0.901,True,False
+32,Time to Hire,0.4248,0.3056,0.2262,False,True
+33,Employee Satisfaction,0.3882,0.4255,0.4503,True,False
+34,Operational Efficiency,0.3723,0.5574,0.6808,True,False
+35,Vendor SLA Compliance,0.3259,0.4832,0.588,True,False
