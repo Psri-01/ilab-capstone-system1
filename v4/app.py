@@ -13,9 +13,9 @@ st.set_page_config(page_title="Decidr · Coherence Engine", page_icon="⚙️",
     layout="wide", initial_sidebar_state="expanded")
 
 # ═══ THEME ═══════════════════════════════════════════════════════════════════
+st.markdown('<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">', unsafe_allow_html=True)
 st.markdown("""<style>
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
-.stApp{font-family:'Outfit',sans-serif;background:linear-gradient(170deg,#0c0a09,#1c1917 50%,#0f0e0d)}
+.stApp{font-family:'Lato',sans-serif;background:linear-gradient(170deg,#0c0a09,#1c1917 50%,#0f0e0d)}
 [data-testid="stSidebar"]{background:linear-gradient(180deg,#1c1917,#0c0a09);border-right:1px solid rgba(217,158,60,.08)}
 #MainMenu,.stDeployButton{visibility:hidden}
 html,body,[class*="css"]{cursor:default}
@@ -27,13 +27,13 @@ input,textarea{cursor:text!important}
 .gc-hl{background:linear-gradient(135deg,rgba(217,158,60,.1),rgba(28,25,23,.92));border:2px solid rgba(217,158,60,.35);border-radius:14px;padding:20px;margin-bottom:12px}
 .gc-kpi{background:rgba(28,25,23,.92);border:1px solid rgba(217,158,60,.12);border-radius:14px;padding:16px;text-align:center}
 /* badges */
-.badge{display:inline-block;padding:5px 16px;border-radius:20px;background:rgba(217,158,60,.08);border:1px solid rgba(217,158,60,.2);font-size:11px;font-weight:600;color:#d9a03c;font-family:'JetBrains Mono',monospace;letter-spacing:.08em;margin-bottom:14px}
+.badge{display:inline-block;padding:5px 16px;border-radius:20px;background:rgba(217,158,60,.08);border:1px solid rgba(217,158,60,.2);font-size:11px;font-weight:600;color:#d9a03c;font-family:'Lato',sans-serif;letter-spacing:.08em;margin-bottom:14px}
 .sb{display:inline-block;padding:3px 11px;border-radius:12px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
 .sb-goal{background:rgba(59,130,246,.12);color:#60a5fa;border:1px solid rgba(59,130,246,.2)}
 .sb-l2{background:rgba(217,158,60,.12);color:#d9a03c;border:1px solid rgba(217,158,60,.2)}
 .sb-l1{background:rgba(244,114,182,.12);color:#f472b6;border:1px solid rgba(244,114,182,.2)}
 /* utility */
-.wc{text-align:right;font-size:11px;color:#78716c;font-family:'JetBrains Mono',monospace;margin-top:-6px}
+.wc{text-align:right;font-size:11px;color:#78716c;font-family:'Lato',sans-serif;margin-top:-6px}
 .sl{font-size:11px;font-weight:600;color:#78716c;text-transform:uppercase;letter-spacing:.08em;margin:20px 0 10px}
 .bar-w{height:6px;background:rgba(120,113,108,.15);border-radius:3px;overflow:hidden;margin:8px 0}
 .bar-f{height:6px;border-radius:3px}
@@ -45,7 +45,7 @@ input,textarea{cursor:text!important}
 /* override streamlit widgets */
 .stProgress>div>div{background:rgba(120,113,108,.15)!important}
 .stProgress>div>div>div{background:linear-gradient(90deg,#d9a03c,#b45309)!important}
-div[data-testid="stMetricValue"]{font-family:'Outfit',sans-serif}
+div[data-testid="stMetricValue"]{font-family:'Lato',sans-serif}
 div[data-testid="stMetricLabel"]{color:#78716c!important}
 </style>""", unsafe_allow_html=True)
 
